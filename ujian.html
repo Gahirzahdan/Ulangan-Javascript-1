@@ -1,0 +1,68 @@
+<html>
+	<head>
+		<title>total harga pembelian</title>
+	</head>
+	<body>
+		<script>
+           let n = 2
+           let listPembelian = []; 
+
+           for (let i = 1; i <= n; i++) {
+           let pembeli = `Pembeli ke-${i}`;
+           let input = parseInt(prompt(`Masukkan jumlah buku untuk ${pembeli}:`));
+           let hargaPerBuku = 5000;
+           let totalHarga = 0;
+           let jenisDiskon = "";
+
+    
+           if (input <= 100) {
+           totalHarga = input * hargaPerBuku;
+           jenisDiskon = "Tanpa Diskon";
+           } 
+           else if (input <= 200) {
+           let seratusPertama = 100 * hargaPerBuku * 0.95;
+           let sisa = (input - 100) * hargaPerBuku * 0.85;
+           totalHarga = seratusPertama + sisa;
+           jenisDiskon = "Kecil (5%-15%)";
+           } 
+           else {
+           let seratusPertama = 100 * hargaPerBuku * 0.93;
+           let seratusKedua = 100 * hargaPerBuku * 0.83;
+           let sisa = (input - 200) * hargaPerBuku * 0.73;
+           totalHarga = seratusPertama + seratusKedua + sisa;
+           jenisDiskon = "Besar (7%-27%)";
+           }
+
+           console.log("==== TRANSAKSI ====");
+           console.log(pembeli);
+           console.log("Jumlah Barang:", input);
+           console.log("Jenis Diskon:", jenisDiskon);
+           console.log("Anda wajib membayar sebesar:", totalHarga);
+
+       }
+
+          console.log("==== REKAPAN AKHIR ====");
+
+        let totalPendapatan = 0;
+        let jenisdiskonKecil = 0;
+        let jenisdiskonBesar = 0;
+
+     for (let j = 0; j < listPembelian.length; j++) {
+          totalPendapatan += listPembelian[j].bayar;
+    
+         if (listPembelian[j].kategoriDiskon === "Kecil (5%-15%)") {
+             jenisdiskonKecil++;
+             } else if (listPembelian[j].kategoriDiskon === "Besar (7%-27%)") {
+                        jenisdiskonBesar++;
+                       }
+       }
+
+         let rataRata = totalPendapatan / n;
+
+           console.log("Total Seluruh Pendapatan:", totalPendapatan);
+           console.log("Rata-rata Pendapatan:", rataRata);
+           console.log("Total pembeli diskon kecil (5%-15%):", jenisdiskonKecil);
+           console.log("Total pembeli diskon besar (7%-27%):", jenisdiskonBesar); 
+		</script>
+	</body>
+</html>
